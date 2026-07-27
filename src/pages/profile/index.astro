@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 import { render } from 'astro:content';
 
-const philosophy = await getEntry('profile', 'philosophy');
+const philosophy = await getEntry('profile', 'philosophy')!;
 const { Content } = await render(philosophy);
 
 const movies = await getCollection('movies');

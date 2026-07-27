@@ -16,17 +16,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--line);
-  border-radius: 0;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-soft);
+  display: none;
 }
 
 * {
@@ -37,8 +27,7 @@ html {
   background: var(--bg);
   margin: 0;
   padding: 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line) var(--bg);
+  scrollbar-width: none;
 }
 
 body {

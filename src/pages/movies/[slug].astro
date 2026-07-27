@@ -20,7 +20,9 @@ const { Content } = await render(entry);
     <div class="grid-12">
       <div style="grid-column: 1 / 9;">
         <p class="eyebrow reveal" style="margin-bottom: 12px;">Movies</p>
-        <h1 class="reveal" style="font-size: clamp(36px, 6vw, 64px); line-height: 1.02;">{entry.data.title}</h1>
+        <h1 class="reveal" style="font-size: clamp(36px, 6vw, 64px); line-height: 1.02;">
+          <a href={entry.data.link}>{entry.data.title}</a>
+        </h1>
         <p class="eyebrow" style="margin-top: 20px;">{entry.data.creator} — {entry.data.year}</p>
       </div>
       <div style="grid-column: 10 / 13; text-align: right;">

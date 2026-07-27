@@ -12,7 +12,7 @@ const all = [
   ...music.map((e) => ({ ...e, type: 'music' as const })),
 ].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const latest = all[0];
+const latest = all.slice(0, 5);
 const rest = all.slice(1, 7);
 ---
 
@@ -20,7 +20,7 @@ const rest = all.slice(1, 7);
   <section class="a24-hero">
     <Navbar/>
     <div class="bg-layer">
-      {all.map((entry, i) => (
+      {latest.map((entry, i) => (
         <div
           class="bg-image"
           data-index={i}
@@ -30,7 +30,7 @@ const rest = all.slice(1, 7);
     </div>
 
     <ul class="title-list">
-      {all.map((entry, i) => (
+      {latest.map((entry, i) => (
         <li>
           <a href={`/${entry.type}/${entry.id}`} class="title-item" data-index={i}>
             <span class="title-text">{entry.data.title}</span>

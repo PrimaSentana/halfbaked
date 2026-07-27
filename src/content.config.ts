@@ -10,7 +10,9 @@ const reviewSchema = z.object({
   tags: z.array(z.string()).default([]),
   date: z.date(),
   excerpt: z.string(),
-  cover: z.string().optional()
+  cover: z.string().optional(),
+  source: z.string().optional(),
+  link: z.string().optional()
 });
 
 const movies = defineCollection({

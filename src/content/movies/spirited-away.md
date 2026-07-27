@@ -7,6 +7,7 @@ tags: ["animation", "fantasy", "family"]
 date: 2026-06-02
 excerpt: "The tunnel scene still gets me. Every single time."
 cover: "/movies/spirited-away.webp"
+link: "https://letterboxd.com/film/spirited-away/"
 ---
 
 I've watched this at every age from ten to now and it changes shape depending on what I bring to it. As a kid it was the bathhouse and the No-Face. Now it's Chihiro's parents at the table, and how quietly terrifying that opening really is.

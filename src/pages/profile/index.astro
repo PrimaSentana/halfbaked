@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const movies = await getCollection('movies');
+const music = await getCollection('music');
+
+const totalReviews = movies.length + music.length;
+---
+
+<Layout title='Profile - Halfbaked'>
+    <section class="wrap" style="padding: 64px 0;">
+        <div class="grid-12">
+            <div style="grid-column: 1 / 4;">
+                <p class="eyebrow reveal">About</p>
+            </div>
+
+            <div style="grid-column: 4 / 10;">
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+                    <img
+                        src="/profile.jpg"
+                        alt="prima"
+                        style="width: 72px; height: 72px; object-fit: cover; border-radius: 50%;"
+                    />
+                    <div>
+                        <p style="font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0;">
+                            Prima Sentana
+                        </p>
+                        <p class="eyebrow" style="margin-top: 4px;">Movies &amp; music, mostly</p>
+                    </div>
+                </div>
+
+                <h2 class="reveal" style="font-size: clamp(28px, 4vw, 40px); line-height: 1.15; margin-bottom: 24px;">
+                    I write about the movies and albums I can't stop thinking about.
+                </h2>
+                <p class="reveal" style="color: var(--ink-soft); font-size: 17px; max-width: 60ch; line-height: 1.8;">
+                    No star ratings pretending to be objective — just notes from someone who watches and
+                    listens too much. This site is a personal log, not a publication.
+                </p>
+            </div>
+
+            <div style="grid-column: 10 / 13; text-align: right;">
+                <span class="rating" style="font-size: 56px; line-height: 1;">{totalReviews}</span>
+                <div style="color: var(--ink-soft); font-family: var(--font-mono); font-size: 13px;">reviews so far</div>
+            </div>
+        </div>
+    </section>
+</Layout>

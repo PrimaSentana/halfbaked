@@ -86,14 +86,93 @@ h1, h2, h3 {
   transform: translateY(24px);
 }
 
-.hero-link .grid-12 > div {
+.a24-hero {
   position: relative;
+  min-height: 80vh;
+  overflow: hidden;
 }
-.hero-image::after {
-  content: '';
+
+.bg-layer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(250,250,248,0.92), rgba(250,250,248,0.3));
+  z-index: 0;
+}
+
+.bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+}
+
+.bg-image.is-active {
+  opacity: 1;
+}
+
+.title-text.is-active {
+  opacity: 1;
+}
+
+.title-list {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin-left: 5vh;
+  padding: 0 var(--edge);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 90vh;
+  padding-bottom: 64px;
+}
+
+.title-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.1;
+  opacity: 1;
+  transition: color 0.3s ease, opacity 0.4s ease;
+}
+
+.title-item:hover {
+  opacity: 0.5;
+  color: #FFFFFF;
+}
+
+.title-list.is-light .title-item{
+  color: #ffffff;
+}
+
+.title-year {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  align-self: flex-start;
+}
+
+.site-header {
+  position: relative;
+  z-index: 50;
+  
+}
+
+.site-header a,
+.site-header nav a {
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.site-header.is-light a,
+.site-header.is-light nav a {
+  color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {

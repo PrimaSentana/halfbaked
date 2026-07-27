@@ -6,6 +6,7 @@ rating: 9
 tags: ["r&b", "alternative"]
 date: 2026-05-18
 excerpt: "An album that refuses to resolve, on purpose."
+cover: /music/blonde.webp
 ---
 
 No drums for most of the runtime and it still feels like the most rhythmic thing I own. The pitched vocals, the tape hiss, the way songs fade before the thought finishes — all of it reads deliberate rather than unfinished.

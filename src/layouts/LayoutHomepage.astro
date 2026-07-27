@@ -1,5 +1,4 @@
 ---
-import Navbar from '../components/Navbar.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -20,7 +19,6 @@ const { title, description = 'Personal reviews of movies and music.' } = Astro.p
     <meta name="description" content={description} />
   </head>
   <body>
-    <Navbar/>
     <hr class="rule" />
 
     <main>
@@ -74,6 +72,30 @@ const { title, description = 'Personal reviews of movies and music.' } = Astro.p
             start: 'top 90%',
             once: true,
           },
+        });
+      });
+
+      const titleItems = gsap.utils.toArray<HTMLElement>('.title-item');
+      const titleList = document.querySelector('.title-list')
+      const bgImages = gsap.utils.toArray<HTMLElement>('.bg-image');
+      const siteHeader = document.querySelector('.site-header');
+
+      titleItems.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+          siteHeader?.classList.add('is-light');
+          titleList?.classList.add('is-light');
+          const index = item.dataset.index;
+          bgImages.forEach((bg) => {
+            const isTarget = bg.dataset.index === index;
+            gsap.to(bg, {
+              opacity: isTarget ? 1 : 0,
+              duration: 0.3,
+              ease: 'power2.out',
+            });
+          });
+        });
+        item.addEventListener('mouseleave', () => {
+          siteHeader?.classList.add('is-light');
         });
       });
     </script>

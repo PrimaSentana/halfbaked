@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Personal reviews of movies and music.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.jpg">
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="wrap" style="padding-top: 32px; padding-bottom: 32px;">
+      <div class="grid-12" style="align-items: baseline;">
+        <div style="grid-column: 1 / 5;">
+          <a href="/" style="text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 20px;">
+            Halfbaked
+          </a>
+        </div>
+        <nav style="grid-column: 8 / 13; display: flex; justify-content: flex-end; gap: 32px;">
+          <a href="/movies" class="eyebrow" style="text-decoration: none;">Movies</a>
+          <a href="/music" class="eyebrow" style="text-decoration: none;">Music</a>
+          <a href="/profile" class="eyebrow" style="text-decoration: none;">Profile</a>
+        </nav>
+      </div>
+    </header>
+    <hr class="rule" />
+
+    <main>
+      <slot />
+    </main>
+
+    <hr class="rule" />
+    <footer class="wrap" style="padding: 32px 0; display: flex; justify-content: space-between;">
+      <span class="eyebrow">Halfbaked — my shitty movies and music takes</span>
+    </footer>
+
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import Lenis from 'lenis';
+
+      const heroLink = document.querySelector('.hero-link');
+      const heroImage = heroLink?.querySelector('.hero-image');
+      const heroImg = heroImage?.querySelector('img');
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+
+      lenis.on('scroll', ScrollTrigger.update)
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0)
+
+      const items = gsap.utils.toArray<HTMLElement>('.reveal');
+      items.forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          delay: (i % 6) * 0.05,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            once: true,
+          },
+        });
+      });
+
+      if (heroLink && heroImage && heroImg) {
+        gsap.set(heroImg, { scale: 1.15 }); // slight zoom-out effect on reveal
+
+        const tl = gsap.timeline({ paused: true });
+        tl.to(heroImage, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+          .to(heroImg, { scale: 1, duration: 0.8, ease: 'power3.out' }, '<');
+
+        heroLink.addEventListener('mouseenter', () => tl.play());
+        heroLink.addEventListener('mouseleave', () => tl.reverse());
+      }
+    </script>
+  </body>
+</html>

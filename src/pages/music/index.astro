@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import { getCollection } from 'astro:content';
+
+const music = (await getCollection('music')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Music — Halfbaked">
+  <section class="wrap" style="padding: 48px 0;">
+    <h1 class="reveal" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 32px;">Music</h1>
+    <div class="grid-12">
+      <div style="grid-column: 1 / 13;">
+        {music.map((entry) => (
+          <ReviewCard
+            href={`/music/${entry.id}`}
+            title={entry.data.title}
+            creator={entry.data.creator}
+            year={entry.data.year}
+            rating={entry.data.rating}
+            excerpt={entry.data.excerpt}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

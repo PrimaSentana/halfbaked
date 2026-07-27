@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import { getCollection } from 'astro:content';
+
+const movies = await getCollection('movies');
+const music = await getCollection('music');
+
+const all = [
+  ...movies.map((e) => ({ ...e, type: 'movies' as const })),
+  ...music.map((e) => ({ ...e, type: 'music' as const })),
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const latest = all[0];
+const rest = all.slice(1, 7);
+---
+
+<Layout title="Reel & Record — movie and music reviews">
+  <section class="wrap" style={`padding: 48px 0 64px; background-image: url(${latest.data.cover});`}>
+    <p class="eyebrow reveal" style="margin: 0 0 16px;">Latest review</p>
+    <a href={`/${latest.type}/${latest.id}`} class="reveal" style="text-decoration: none; color: inherit;">
+      <div class="grid-12">
+        <div style="grid-column: 1 / 9;">
+          <h1 style="font-size: clamp(40px, 6vw, 72px); line-height: 1.02;">{latest.data.title}</h1>
+          <p style="color: var(--ink-soft); margin-top: 16px; max-width: 50ch; font-size: 18px;">
+            {latest.data.excerpt}
+          </p>
+          <p class="eyebrow" style="margin-top: 20px;">{latest.data.creator} — {latest.data.year}</p>
+        </div>
+        <div style="grid-column: 10 / 13; text-align: right;">
+          <span class="rating" style="font-size: 88px; line-height: 1;">{latest.data.rating}</span>
+          <div style="color: var(--ink-soft); font-family: var(--font-mono); font-size: 14px;">out of 10</div>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="wrap" style="padding: 48px 0;">
+    <div class="grid-12">
+      <div style="grid-column: 1 / 4;">
+        <p class="eyebrow reveal">Recent</p>
+      </div>
+      <div style="grid-column: 4 / 13;">
+        {rest.map((entry) => (
+          <ReviewCard
+            href={`/${entry.type}/${entry.id}`}
+            title={entry.data.title}
+            creator={entry.data.creator}
+            year={entry.data.year}
+            rating={entry.data.rating}
+            excerpt={entry.data.excerpt}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

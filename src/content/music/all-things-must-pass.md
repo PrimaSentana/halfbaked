@@ -7,7 +7,7 @@ tags: ["rock", "classic"]
 date: 2026-07-27
 excerpt: "The quiet Beatle had a triple album's worth of songs waiting the whole time."
 cover: "/music/all-things-must-pass.webp"
-source: "https://open.spotify.com/embed/album/7j7lsExGJtBHLgDYzjclwk?utm_source=generator&si=d2bc8990906c4576"
+source: "https://open.spotify.com/embed/album/7j7lsExGJtBHLgDYzjclwk?utm_source=generator&theme=0&si=d2bc8990906c4576"
 ---
 
 Knowing how much of this was reportedly written and shelved during the Beatles years changes how you hear it — there's a backlog of feeling being let out all at once, and the album is long enough that it actually needs to be.

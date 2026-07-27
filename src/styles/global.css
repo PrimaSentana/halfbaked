@@ -178,6 +178,26 @@ h1, h2, h3 {
   color: #ffffff;
 }
 
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 48px);
+  color: var(--ink);
+  filter: blur(14px);
+  opacity: 0;
+  letter-spacing: -0.01em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;

@@ -20,6 +20,9 @@ const { title, description = 'Personal reviews of movies and music.' } = Astro.p
     <meta name="description" content={description} />
   </head>
   <body>
+    <div id="preloader">
+      <span class="preloader-text">Halfbaked</span>
+    </div>
     <hr class="rule" />
 
     <main>
@@ -97,6 +100,35 @@ const { title, description = 'Personal reviews of movies and music.' } = Astro.p
           siteHeader?.classList.add('is-light');
         });
       });
+
+      const preloader = document.querySelector<HTMLElement>('#preloader');
+      const preloaderText = document.querySelector<HTMLElement>('.preloader-text');
+
+      if (preloader && preloaderText) {
+        const tl = gsap.timeline();
+
+        tl.to(preloaderText, {
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1,
+          ease: 'power2.out',
+        })
+          .to(preloaderText, {
+            opacity: 0,
+            filter: 'blur(10px)',
+            duration: 0.6,
+            ease: 'power2.in',
+            delay: 0.3,
+          })
+          .to(preloader, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power1.out',
+            onComplete: () => {
+              preloader.style.display = 'none';
+            },
+          }, '-=0.2');
+      }
     </script>
   </body>
 </html>

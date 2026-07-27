@@ -1,9 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+const philosophy = await getEntry('profile', 'philosophy');
+const { Content } = await render(philosophy);
 
 const movies = await getCollection('movies');
 const music = await getCollection('music');
+
 
 const totalReviews = movies.length + music.length;
 ---
@@ -42,6 +48,17 @@ const totalReviews = movies.length + music.length;
             <div style="grid-column: 10 / 13; text-align: right;">
                 <span class="rating" style="font-size: 56px; line-height: 1;">{totalReviews}</span>
                 <div style="color: var(--ink-soft); font-family: var(--font-mono); font-size: 13px;">reviews so far</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap" style="padding: 64px 0;">
+        <div class="grid-12">
+            <div style="grid-column: 1 / 4;">
+            <p class="eyebrow reveal">{philosophy.data.title}</p>
+            </div>
+            <div class="reveal" style="grid-column: 4 / 10; font-size: 18px; line-height: 1.8; color: var(--ink-soft);">
+            <Content />
             </div>
         </div>
     </section>

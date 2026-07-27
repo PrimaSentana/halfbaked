@@ -25,4 +25,11 @@ const music = defineCollection({
   schema: reviewSchema,
 });
 
-export const collections = { movies, music };
+const profile = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/profile' }),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { movies, music, profile };

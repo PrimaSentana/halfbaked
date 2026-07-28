@@ -1,6 +1,6 @@
-# Halfbaked (Reel & Record)
+# Halfbaked
 
-A personal blog for movie and music reviews. Built with Astro, styled in a restrained Swiss/editorial design, with GSAP + Lenis for motion. Content is just markdown files — no database.
+A personal blog for movie and music reviews. Content is just markdown files — no database.
 
 ## Stack
 
@@ -32,7 +32,6 @@ src/
       index.astro         # all music reviews
       [slug].astro         # single music review page
     profile.astro         # about + philosophy + how-to-use
-    how-to-use.astro       # visitor-facing usage guide
   styles/
     global.css            # design tokens (colors, type, grid), base styles
 ```
@@ -88,5 +87,5 @@ If using the Spotify "Now Playing" widget or TMDB posters, make sure the relevan
 
 ## Notes
 
-- This is a personal, for-fun project — not trying to be a full publication or social platform.
+- This is a personal, for-fun project
 - No database, no comments, no accounts. Just markdown in, static site out.
